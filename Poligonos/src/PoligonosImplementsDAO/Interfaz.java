@@ -69,8 +69,8 @@ public class Interfaz extends JFrame{
         PanelCabecera PanelTitulo=new PanelCabecera();
         add(PanelTitulo,BorderLayout.NORTH);
         
-        PanelInformacion i=new PanelInformacion();
-        add(i,BorderLayout.WEST);
+        //PanelInformacion i=new PanelInformacion();
+        //add(i,BorderLayout.WEST);
     }
 
     

@@ -6,6 +6,7 @@ package PoligonosImplementsDAO;
 
 import Clases.Poligono;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
@@ -20,7 +21,8 @@ public class PanelDibujo extends JPanel{
     Poligono poligono;
     public PanelDibujo(Poligono p) {
         this.poligono=p;
-        this.setBounds(0, 0,400, 400);
+        
+        this.setPreferredSize(new Dimension(300, 300));
         this.setBorder(new LineBorder(Color.GREEN));
         setBackground(Color.GRAY);
         
