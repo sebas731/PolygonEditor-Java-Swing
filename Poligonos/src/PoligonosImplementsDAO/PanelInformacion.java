@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package PoligonosImplementsDAO;
 
 import Clases.Poligono;
@@ -14,6 +10,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Locale;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -40,6 +38,14 @@ public class PanelInformacion extends JPanel implements ActionListener{
     Poligono figura;
     
     InterfazPrincipal padre;
+    
+    //labels para actualziar
+    
+    private JLabel lblPerimetro;
+    
+    private JLabel lblArea;
+    
+    private JLabel lblALtura;
 
     public PanelInformacion(InterfazPrincipal principal) {
         padre = principal;
@@ -53,19 +59,22 @@ public class PanelInformacion extends JPanel implements ActionListener{
         panelBotones.setBorder(new TitledBorder("BOTONES "));
         //btnPuntos.setBounds(0, 0, 200, 100);
         btnPuntos=new JButton();
-        btnPuntos.setText("CAMBIAR POLIGONO");
+        btnPuntos.setText("CAMBIAR PUNTOS");
         btnPuntos.setActionCommand(PUNTOS);
+        btnPuntos.addActionListener(this);
         panelBotones.add(btnPuntos);
         //boton para cambiar color de relleno
         btnColorRelleno=new JButton();
         btnColorRelleno.setText("CAMBIAR COLOR");
         btnColorRelleno.setActionCommand(RELLENO);
+        btnColorRelleno.addActionListener(this);
         panelBotones.add(btnColorRelleno);
         
         // COLOR LINEAS
         btnColorLineas=new JButton();
         btnColorLineas.setText("CAMBIAR COLOR LINEA");
         btnColorLineas.setActionCommand(COLOR);
+        btnColorLineas.addActionListener(this);
         panelBotones.add(btnColorLineas);
         
         
@@ -77,20 +86,20 @@ public class PanelInformacion extends JPanel implements ActionListener{
         JLabel lblTPerimetro=new JLabel("Perimetro: ");
         lblTPerimetro.setFont(new Font("Arial", Font.BOLD, 15));
         panelInfo.add(lblTPerimetro);
-        JLabel lblPerimetro=new JLabel(" "+padre.figura.getArea());
+        lblPerimetro=new JLabel(" "+padre.figura.getPerimeter()+ " px");
         panelInfo.add(lblPerimetro);
         //Area
         JLabel lblTArea=new JLabel("Area: ");
         lblTArea.setFont(new Font("Arial", Font.BOLD, 15));
         panelInfo.add(lblTArea);
-        JLabel lblArea=new JLabel(" "+padre.figura.getArea());
+        lblArea=new JLabel(" "+padre.figura.getArea()+ " px2");
         panelInfo.add(lblArea);
         //Altura
         JLabel lblTALtura=new JLabel("Altura: ");
         lblTALtura.setFont(new Font("Arial", Font.BOLD, 15));
         panelInfo.add(lblTALtura);
         
-        JLabel lblALtura=new JLabel(" "+padre.figura.getArea());
+        lblALtura=new JLabel(" "+padre.figura.getHeight());
         panelInfo.add(lblALtura);
         
         
@@ -116,22 +125,39 @@ public class PanelInformacion extends JPanel implements ActionListener{
         
         
     }
+    public void actualizar(double perimetro,double area, double altura) {
+       
+        this.lblPerimetro.setText(formatearValor(perimetro));
+        this.lblArea.setText(formatearValor(area));
+        this.lblALtura.setText(formatearValor(altura)); 
+        
+    }
+    private String formatearValor(double valor) {
+        DecimalFormat df = (DecimalFormat)NumberFormat.getInstance();
+        df.applyPattern("###,###.##");
+        df.setMinimumFractionDigits(2);
+        return df.format(valor);
+  }
 
     @Override
     public void actionPerformed(ActionEvent e) {
        
         if (PUNTOS.equals(e.getActionCommand())) {
-            
+            padre.cambiarFigura();
+            System.out.println("HOLA");
             
         }else if (COLOR.equals(e.getActionCommand())) {
+            padre.cambiarColorLineas();
             
         }else if (RELLENO.equals(e.getActionCommand())) {
-            
+            padre.cambiarColorRelleno();
         }
 {
             
         }
     }
+
+    
     
     
     

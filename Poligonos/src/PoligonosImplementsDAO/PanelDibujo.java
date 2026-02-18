@@ -42,8 +42,9 @@ public class PanelDibujo extends JPanel{
         p.addPoint(4,70);
         p.addPoint(90,10);
         */
-        g2d.setColor(Color.red);
+        g2d.setColor(poligono.getColorFondo());
         g2d.fill(p);
+        g2d.setColor(poligono.getColorRelleno());
         g2d.drawPolygon(p);
         
     }

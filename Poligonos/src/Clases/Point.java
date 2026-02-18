@@ -13,6 +13,11 @@ public class Point {
     private int posicionX;
     private int posicionY;
 
+    public Point() {
+    }
+    
+    
+
     public Point(int posicionX, int posicionY) {
         this.posicionX = posicionX;
         this.posicionY = posicionY;
